@@ -1,10 +1,7 @@
 package com.example.geektrust.Service;
 
-
 import com.example.geektrust.Model.LoanDetails;
 import com.example.geektrust.Utils.ApplicationConstants;
-
-import java.util.Arrays;
 
 public class LoanService implements ApplicationConstants {
 

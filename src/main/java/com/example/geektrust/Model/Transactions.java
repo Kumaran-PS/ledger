@@ -24,13 +24,4 @@ public class Transactions implements ApplicationConstants {
         return emiNumber;
     }
 
-    @Override
-    public String toString() {
-        return "Transactions{" +
-                "bankName='" + bankName + '\'' +
-                ", personName='" + personName + '\'' +
-                ", lumpSumPayment=" + lumpSumPayment +
-                ", emiNumber=" + emiNumber +
-                '}';
-    }
 }

@@ -4,7 +4,7 @@ import com.example.geektrust.Model.LoanDetails;
 import com.example.geektrust.Model.Transactions;
 import com.example.geektrust.Utils.ApplicationConstants;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
 
 public class BalanceService implements ApplicationConstants {
@@ -34,14 +34,14 @@ public class BalanceService implements ApplicationConstants {
 
     private Double calculateLumpSumPaid(String personName,int emiNumber,String bankName) {
         Double lumpSumPaid = DEFAULT;
-        List<Transactions> paymentsList = loanTransactions.get((bankName+"-"+personName));
-
-        for(Transactions payments: paymentsList){
-            int paidPeriod = payments.getEmiNumber();
-            if(paidPeriod <= emiNumber){
-                lumpSumPaid += payments.getLumpSumPayment();
+        List<Transactions> paymentsList = loanTransactions.getOrDefault((bankName+"-"+personName),new ArrayList<>());
+        if(!paymentsList.isEmpty()) {
+            for (Transactions payments : paymentsList) {
+                int paidPeriod = payments.getEmiNumber();
+                if (paidPeriod <= emiNumber) {
+                    lumpSumPaid += payments.getLumpSumPayment();
+                }
             }
-
         }
         return lumpSumPaid;
     }

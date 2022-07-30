@@ -11,6 +11,7 @@ public interface ApplicationConstants {
     String FILEPATH = "sample_input/input2.txt";
     String SPACE = " ";
     int INPUT_TYPE = 0;
+    int PERCENT = 100;
     String LOAN = "LOAN";
     String BALANCE = "BALANCE";
     String PAYMENT = "PAYMENT";

@@ -2,9 +2,7 @@ package com.example.geektrust.Service;
 
 import com.example.geektrust.Model.Transactions;
 import com.example.geektrust.Utils.ApplicationConstants;
-
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class PaymentService implements ApplicationConstants {

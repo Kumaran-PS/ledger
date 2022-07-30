@@ -22,7 +22,7 @@ public class LoanDetails implements ApplicationConstants {
 
     public void setEmiDetails(){
         this.totalEmiCount = loanPeriod * NO_OF_MONTHS;
-        Double interest = (principleAmount*loanPeriod*interestRate) / 100;
+        Double interest = (principleAmount*loanPeriod*interestRate) / PERCENT;
         this.totalAmount = principleAmount + interest ;
         this.monthlyEmi = (int) Math.ceil(totalAmount / totalEmiCount);
     }

@@ -2,7 +2,6 @@ package com.example.geektrust;
 
 import com.example.geektrust.Controller.LoanController;
 import com.example.geektrust.Utils.ApplicationConstants;
-
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Scanner;
@@ -11,7 +10,7 @@ public class Main implements ApplicationConstants {
     public static void main(String[] args) {
         LoanController loanController = LoanController.getInstance();
         try {
-            FileInputStream inputFile = new FileInputStream(FILEPATH);
+            FileInputStream inputFile = new FileInputStream(args[0]);
             Scanner sc = new Scanner(inputFile);
             while (sc.hasNextLine()) {
                 String inputLine = sc.nextLine();
