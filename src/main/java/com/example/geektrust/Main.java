@@ -1,20 +1,26 @@
-package com.example.geektrust; 
+package com.example.geektrust;
 
-public class Main {
+import com.example.geektrust.Controller.LoanController;
+import com.example.geektrust.Utils.ApplicationConstants;
+
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.Scanner;
+
+public class Main implements ApplicationConstants {
     public static void main(String[] args) {
-        /*
-        Sample code to read from file passed as command line argument
+        LoanController loanController = LoanController.getInstance();
         try {
-            // the file to be opened for reading
-            FileInputStream fis = new FileInputStream(args[0]);
-            Scanner sc = new Scanner(fis); // file to be scanned
-            // returns true if there is another line to read
+            FileInputStream inputFile = new FileInputStream(FILEPATH);
+            Scanner sc = new Scanner(inputFile);
             while (sc.hasNextLine()) {
-               //Add your code here to process input commands
+                String inputLine = sc.nextLine();
+                String[] inputData = inputLine.split(SPACE);
+                loanController.transactionOperation(inputData);
             }
-            sc.close(); // closes the scanner
+            sc.close();
         } catch (IOException e) {
+            System.out.println(e.getLocalizedMessage());
         }
-        */
     }
 }
