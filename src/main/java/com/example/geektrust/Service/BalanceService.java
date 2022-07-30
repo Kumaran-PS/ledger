@@ -60,7 +60,8 @@ public class BalanceService implements ApplicationConstants {
     }
 
     private void displayOutput(int remainingEmi, Double totalAmountPaid,String bankName , String personName) {
-        System.out.println(bankName+SPACE+personName+SPACE+totalAmountPaid+SPACE+remainingEmi);
+        String totalAmount = String.format("%.0f", totalAmountPaid);
+        System.out.println(bankName+SPACE+personName+SPACE+totalAmount+SPACE+remainingEmi);
     }
 
 }
