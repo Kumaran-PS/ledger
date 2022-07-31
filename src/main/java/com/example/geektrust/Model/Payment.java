@@ -3,13 +3,13 @@ package com.example.geektrust.Model;
 import com.example.geektrust.Utils.ApplicationConstants;
 
 
-public class Transactions implements ApplicationConstants {
+public class Payment implements ApplicationConstants {
     String bankName;
     String personName;
     Double lumpSumPayment;
     int emiNumber;
 
-    public Transactions(String bankName, String personName, Double lumpSumPayment, int emiNumber) {
+    public Payment(String bankName, String personName, Double lumpSumPayment, int emiNumber) {
         this.bankName = bankName;
         this.personName = personName;
         this.lumpSumPayment = lumpSumPayment;

@@ -8,8 +8,8 @@ public class Loan implements ApplicationConstants {
     int loanPeriod;
     int interestRate;
     Double principleAmount;
-    int monthlyEmi;
-    int totalEmiCount;
+    int emi;
+
 
     public Loan(String personName, String bankName, int loanPeriod, int interestRate, Double principleAmount) {
         this.personName = personName;
@@ -20,18 +20,19 @@ public class Loan implements ApplicationConstants {
     }
 
     public double emiDetails(){
-        this.totalEmiCount = loanPeriod * NO_OF_MONTHS;
+        int totalEmiCount = loanPeriod * NO_OF_MONTHS;
         Double interest = (principleAmount*loanPeriod*interestRate) / PERCENT;
-        this.monthlyEmi = (int) Math.ceil((principleAmount + interest) / totalEmiCount);
+        this.emi = (int) Math.ceil((principleAmount + interest) / totalEmiCount);
         return (principleAmount+interest);
     }
 
     public int getRemainingEmi(Double remainingAmount) {
-        return (int) Math.ceil(remainingAmount / monthlyEmi);
+        return (int) Math.ceil(remainingAmount / emi);
     }
 
 
     public int emiPaidUntilMonth(int emiNumber) {
-        return emiNumber * monthlyEmi;
+        return emiNumber * emi;
     }
+
 }

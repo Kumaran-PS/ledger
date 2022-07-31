@@ -3,17 +3,14 @@ package com.example.geektrust.Service;
 import com.example.geektrust.Model.Loan;
 import com.example.geektrust.Utils.ApplicationConstants;
 
-public class LoanService implements ApplicationConstants {
+public class LoanService implements ApplicationConstants, LedgerApplication {
 
-    private static LoanService loanService = null;
-    private LoanService() {}
-    public static LoanService getInstance() {
-        if (loanService != null) return loanService;
-        loanService = new LoanService();
-        return loanService;
+    public final String[] loanData;
+    public LoanService(String loanData[]) {
+        this.loanData = loanData;
     }
 
-    public void processLoan(String[] loanData) {
+    public void process() {
         String personName = loanData[2];
         String bankName = loanData[1];
         if(!personLoanData.containsKey((bankName+"-"+personName))) {

@@ -1,23 +1,21 @@
 package com.example.geektrust.Service;
 
 import com.example.geektrust.Model.Loan;
-import com.example.geektrust.Model.Transactions;
+import com.example.geektrust.Model.Payment;
 import com.example.geektrust.Utils.ApplicationConstants;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class BalanceService implements ApplicationConstants {
+public class BalanceService implements ApplicationConstants, LedgerApplication {
 
-    private static BalanceService balanceService = null;
-    private BalanceService() {}
-    public static BalanceService getInstance() {
-        if (balanceService != null) return balanceService;
-        balanceService = new BalanceService();
-        return balanceService;
+
+    public final String[] inputData;
+    public BalanceService(String inputData[]) {
+        this.inputData = inputData;
     }
 
-    public void processBalance(String[] inputData) {
+    public void process() {
         String personName = inputData[2];
         String bankName = inputData[1];
         int emiNumber = Integer.parseInt(inputData[3]);
@@ -33,9 +31,9 @@ public class BalanceService implements ApplicationConstants {
 
     private Double calculateLumpSumPaid(String personName,int emiNumber,String bankName) {
         Double lumpSumPaid = DEFAULT;
-        List<Transactions> paymentsList = loanTransactions.getOrDefault((bankName+"-"+personName),new ArrayList<>());
+        List<Payment> paymentsList = loanTransactions.getOrDefault((bankName+"-"+personName),new ArrayList<>());
         if(!paymentsList.isEmpty()) {
-            for (Transactions payments : paymentsList) {
+            for (Payment payments : paymentsList) {
                 boolean considerEmi = payments.isConsiderEmi(emiNumber);
                 if (considerEmi) {
                     lumpSumPaid = payments.addLumpSum(lumpSumPaid);

@@ -1,29 +1,26 @@
 package com.example.geektrust.Service;
 
-import com.example.geektrust.Model.Transactions;
+import com.example.geektrust.Model.Payment;
 import com.example.geektrust.Utils.ApplicationConstants;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class PaymentService implements ApplicationConstants {
+public class PaymentService implements ApplicationConstants, LedgerApplication {
 
-    private static PaymentService paymentService = null;
-    private PaymentService() {}
-    public static PaymentService getInstance() {
-        if (paymentService != null) return paymentService;
-        paymentService = new PaymentService();
-        return paymentService;
+    public final String[] inputData;
+    public PaymentService(String inputData[]) {
+        this.inputData = inputData;
     }
-
-    public void processPayment(String[] inputData) {
+    public void process() {
         String personName = inputData[2];
         String bankName = inputData[1];
         if (personLoanData.containsKey((bankName+"-"+personName))) {
             Double lumpSumPayment = Double.parseDouble(inputData[3]);
             int emiNumber = Integer.parseInt(inputData[4]);
-            Transactions transactions = new Transactions(bankName, personName, lumpSumPayment, emiNumber);
-            List<Transactions> paymentList = loanTransactions.getOrDefault((bankName+"-"+personName), new ArrayList<>());
-            paymentList.add(transactions);
+            Payment payment = new Payment(bankName, personName, lumpSumPayment, emiNumber);
+            List<Payment> paymentList = loanTransactions.getOrDefault((bankName+"-"+personName), new ArrayList<>());
+            paymentList.add(payment);
             loanTransactions.put((bankName+"-"+personName), paymentList);
 
         } else {

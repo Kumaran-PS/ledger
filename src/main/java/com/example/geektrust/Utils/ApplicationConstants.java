@@ -1,7 +1,7 @@
 package com.example.geektrust.Utils;
 
 import com.example.geektrust.Model.Loan;
-import com.example.geektrust.Model.Transactions;
+import com.example.geektrust.Model.Payment;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -17,11 +17,11 @@ public interface ApplicationConstants {
     String PAYMENT = "PAYMENT";
     int NO_OF_MONTHS = 12;
     Double DEFAULT = (double) 0;
-    List<Transactions>DEFAULT_LIST = new ArrayList<>();
+    List<Payment>DEFAULT_LIST = new ArrayList<>();
 
     HashMap<String, Loan> personLoanData = new HashMap<>();
 
-    HashMap<String, List<Transactions>> loanTransactions = new HashMap<>();
+    HashMap<String, List<Payment>> loanTransactions = new HashMap<>();
 
 
 }
