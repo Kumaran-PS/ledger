@@ -1,6 +1,6 @@
 package com.example.geektrust.Utils;
 
-import com.example.geektrust.Model.LoanDetails;
+import com.example.geektrust.Model.Loan;
 import com.example.geektrust.Model.Transactions;
 
 import java.util.ArrayList;
@@ -19,7 +19,7 @@ public interface ApplicationConstants {
     Double DEFAULT = (double) 0;
     List<Transactions>DEFAULT_LIST = new ArrayList<>();
 
-    HashMap<String, LoanDetails> personLoanData = new HashMap<>();
+    HashMap<String, Loan> personLoanData = new HashMap<>();
 
     HashMap<String, List<Transactions>> loanTransactions = new HashMap<>();
 

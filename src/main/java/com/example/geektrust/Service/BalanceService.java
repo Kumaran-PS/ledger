@@ -1,6 +1,6 @@
 package com.example.geektrust.Service;
 
-import com.example.geektrust.Model.LoanDetails;
+import com.example.geektrust.Model.Loan;
 import com.example.geektrust.Model.Transactions;
 import com.example.geektrust.Utils.ApplicationConstants;
 
@@ -22,11 +22,11 @@ public class BalanceService implements ApplicationConstants {
         String bankName = inputData[1];
         int emiNumber = Integer.parseInt(inputData[3]);
         Double lumpSumPaid = calculateLumpSumPaid(personName,emiNumber,bankName);
-        LoanDetails loanDetails = personLoanData.get((bankName+"-"+personName));
-        Double totalAmountToBePaid = loanDetails.emiDetails();
-        Double totalAmountPaid = loanDetails.emiPaidUntilMonth(emiNumber) + lumpSumPaid;
+        Loan loan = personLoanData.get((bankName+"-"+personName));
+        Double totalAmountToBePaid = loan.emiDetails();
+        Double totalAmountPaid = loan.emiPaidUntilMonth(emiNumber) + lumpSumPaid;
         Double remainingAmount = getRemainingAmount(totalAmountToBePaid,totalAmountPaid);
-        int remainingEmi = loanDetails.getRemainingEmi(remainingAmount);
+        int remainingEmi = loan.getRemainingEmi(remainingAmount);
         if(totalAmountPaid > totalAmountToBePaid) totalAmountPaid = totalAmountToBePaid;
         displayOutput(remainingEmi , totalAmountPaid , bankName , personName);
     }
@@ -43,10 +43,6 @@ public class BalanceService implements ApplicationConstants {
             }
         }
         return lumpSumPaid;
-    }
-
-    private int getRemainingEmi(Double remainingAmount, int monthlyEmi) {
-        return (int) Math.ceil(remainingAmount / monthlyEmi);
     }
 
     private Double getRemainingAmount(Double totalAmountToBePaid, Double totalAmountPaid) {

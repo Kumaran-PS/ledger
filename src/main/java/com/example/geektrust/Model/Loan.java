@@ -2,7 +2,7 @@ package com.example.geektrust.Model;
 
 import com.example.geektrust.Utils.ApplicationConstants;
 
-public class LoanDetails implements ApplicationConstants {
+public class Loan implements ApplicationConstants {
     String personName;
     String bankName;
     int loanPeriod;
@@ -11,7 +11,7 @@ public class LoanDetails implements ApplicationConstants {
     int monthlyEmi;
     int totalEmiCount;
 
-    public LoanDetails(String personName, String bankName, int loanPeriod, int interestRate, Double principleAmount) {
+    public Loan(String personName, String bankName, int loanPeriod, int interestRate, Double principleAmount) {
         this.personName = personName;
         this.bankName = bankName;
         this.loanPeriod = loanPeriod;
