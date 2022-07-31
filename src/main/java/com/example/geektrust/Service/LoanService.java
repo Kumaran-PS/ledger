@@ -21,7 +21,7 @@ public class LoanService implements ApplicationConstants {
             int loanPeriod = Integer.parseInt(loanData[4]);
             int interestRate = Integer.parseInt(loanData[5]);
             LoanDetails loanDetails = new LoanDetails(personName,bankName,loanPeriod,interestRate,principleAmount);
-            loanDetails.setEmiDetails();
+            loanDetails.emiDetails();
             personLoanData.put((bankName+"-"+personName), loanDetails);
         }
         else{

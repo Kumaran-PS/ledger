@@ -23,11 +23,10 @@ public class BalanceService implements ApplicationConstants {
         int emiNumber = Integer.parseInt(inputData[3]);
         Double lumpSumPaid = calculateLumpSumPaid(personName,emiNumber,bankName);
         LoanDetails loanDetails = personLoanData.get((bankName+"-"+personName));
-        int monthlyEmi = loanDetails.getMonthlyEmi();
-        Double totalAmountToBePaid = loanDetails.getTotalAmount();
-        Double totalAmountPaid = getTotalEmiPaid(emiNumber,monthlyEmi) + lumpSumPaid;
+        Double totalAmountToBePaid = loanDetails.emiDetails();
+        Double totalAmountPaid = loanDetails.emiPaidUntilMonth(emiNumber) + lumpSumPaid;
         Double remainingAmount = getRemainingAmount(totalAmountToBePaid,totalAmountPaid);
-        int remainingEmi = getRemainingEmi(remainingAmount,monthlyEmi);
+        int remainingEmi = loanDetails.getRemainingEmi(remainingAmount);
         if(totalAmountPaid > totalAmountToBePaid) totalAmountPaid = totalAmountToBePaid;
         displayOutput(remainingEmi , totalAmountPaid , bankName , personName);
     }
@@ -37,17 +36,13 @@ public class BalanceService implements ApplicationConstants {
         List<Transactions> paymentsList = loanTransactions.getOrDefault((bankName+"-"+personName),new ArrayList<>());
         if(!paymentsList.isEmpty()) {
             for (Transactions payments : paymentsList) {
-                int paidPeriod = payments.getEmiNumber();
-                if (paidPeriod <= emiNumber) {
-                    lumpSumPaid += payments.getLumpSumPayment();
+                boolean considerEmi = payments.isConsiderEmi(emiNumber);
+                if (considerEmi) {
+                    lumpSumPaid = payments.addLumpSum(lumpSumPaid);
                 }
             }
         }
         return lumpSumPaid;
-    }
-
-    private int getTotalEmiPaid(int emiNumber, int monthlyEmi) {
-        return (emiNumber * monthlyEmi);
     }
 
     private int getRemainingEmi(Double remainingAmount, int monthlyEmi) {

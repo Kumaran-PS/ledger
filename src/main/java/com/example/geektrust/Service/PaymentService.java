@@ -8,10 +8,7 @@ import java.util.List;
 public class PaymentService implements ApplicationConstants {
 
     private static PaymentService paymentService = null;
-
-    private PaymentService() {
-    }
-
+    private PaymentService() {}
     public static PaymentService getInstance() {
         if (paymentService != null) return paymentService;
         paymentService = new PaymentService();

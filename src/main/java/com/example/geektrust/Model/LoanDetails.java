@@ -9,7 +9,6 @@ public class LoanDetails implements ApplicationConstants {
     int interestRate;
     Double principleAmount;
     int monthlyEmi;
-    Double totalAmount;
     int totalEmiCount;
 
     public LoanDetails(String personName, String bankName, int loanPeriod, int interestRate, Double principleAmount) {
@@ -20,22 +19,19 @@ public class LoanDetails implements ApplicationConstants {
         this.principleAmount = principleAmount;
     }
 
-    public void setEmiDetails(){
+    public double emiDetails(){
         this.totalEmiCount = loanPeriod * NO_OF_MONTHS;
         Double interest = (principleAmount*loanPeriod*interestRate) / PERCENT;
-        this.totalAmount = principleAmount + interest ;
-        this.monthlyEmi = (int) Math.ceil(totalAmount / totalEmiCount);
+        this.monthlyEmi = (int) Math.ceil((principleAmount + interest) / totalEmiCount);
+        return (principleAmount+interest);
     }
 
-    public int getMonthlyEmi() {
-        return monthlyEmi;
+    public int getRemainingEmi(Double remainingAmount) {
+        return (int) Math.ceil(remainingAmount / monthlyEmi);
     }
 
-    public Double getTotalAmount() {
-        return totalAmount;
-    }
 
-    public String getBankName() {
-        return bankName;
+    public int emiPaidUntilMonth(int emiNumber) {
+        return emiNumber * monthlyEmi;
     }
 }

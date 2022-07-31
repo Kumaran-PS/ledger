@@ -16,12 +16,11 @@ public class Transactions implements ApplicationConstants {
         this.emiNumber = emiNumber;
     }
 
-    public Double getLumpSumPayment() {
-        return lumpSumPayment;
+    public boolean isConsiderEmi(int emiNumber) {
+        return emiNumber >= (this.emiNumber);
     }
 
-    public int getEmiNumber() {
-        return emiNumber;
+    public Double addLumpSum(Double lumpSumPaid) {
+        return lumpSumPaid + lumpSumPayment;
     }
-
 }
